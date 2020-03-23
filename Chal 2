@@ -1,0 +1,39 @@
+// Created on Mon March 23 2020
+
+int motorl = 0;
+int motorr = 2;
+int middlerange = 1;
+int rightrange = 2;
+int speed =100;
+int speed_slow =50;
+
+int main(){
+    slight_turn(); //slightly turns
+    careful_now(); //carefully goes down
+    line_left(); //lines up with left line
+    return 0;
+}
+
+void slight_turn(){
+    while(analog(rightrange) > 450){ //how close to wall
+    motor(motorl,speed);
+    printf("turning \n");
+    }
+
+}
+
+void careful_now(){
+    while(analog(middlerange) > 400){ // distance from bot wall
+    motor(motorl,speed_slow);
+    motor(motorr,speed_slow);
+    printf("being careful as we speak \n");
+    }
+
+}
+
+void line_left(){
+    motor(motorr,speed); // sleeping to turn
+    motor(motorl,-speed);
+    msleep(800);
+    printf("Finished \n");
+}
